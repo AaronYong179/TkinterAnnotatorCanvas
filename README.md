@@ -11,7 +11,7 @@ _The absolutely low-res figure above shows an example of a squamous epithelium s
 
 ### Requirements
 ---
-* Python 3.6 and above
+* Python 3.6 and above (or just delete the f-strings and it should work on Python3.x I think)
 * [tkinter](https://docs.python.org/3/library/tkinter.html)
 
 ### Importing 
