@@ -119,7 +119,7 @@ Sets the AnnotatorCanvas for point annotation.
 `undo_point()`
 <br>
 Bound to the BackSpace key. Simply deletes the last point placed. The polygons and points are kept on separate "layers". In other words, points are "undone" independent of the polygons, and vice versa.
-<br>
+<br><br>
 
 `annotate_polygon()`
 <br>
@@ -130,6 +130,7 @@ Sets the AnnotatorCanvas for polygonal annotation.
 * Additional note on annotating polygons:
   * Polygon closure will only occur if there are more than two points of the polygon when a double-left-click is encountered. The unfinished polygon will be treated as an anomaly and discarded otherwise.
   * If `annotate_point()` is called while there is an unclosed polygon, the polygon will be automatically closed by joining the last polygon node created with the first polygon node.
+<br>
 
 `undo_polygon()`
 <br>
@@ -138,31 +139,32 @@ Bound to the BackSpace key.
   * Undoing while all polygons are closed will undo an entire polygon.
   * Undoing while there is an unclosed polygon will undo a single line.
 
-The polygons and points are kept on separate "layers". In other words, points are "undone" independent of the polygons, and vice versa.
+The polygons and points are kept on separate "layers". In other words, points are "undone" independent of the polygons, and vice versa.<br>
 
 `clear_all()`
 <br>
 As the method name suggests, all points and polygons are deleted off.
-<br>
+<br><br>
 
 `flush()`
 <br>
 Call this method when annotation of an image has finished. Flushes all saved points and polygons into a dictionary with keys `points` and `polygons`. The AnnotatorCanvas and its internal storage is cleared.
-<br>
+<br><br>
 
 `unbind_all()`
 <br>
 Call this method to unbind all keyboard shortcuts implemented by AnnotatorCanvas
-<br>
+<br><br>
 
 `set_boundary(x, y, width, height)`
-<br>
+<br><br>
 Only call this method if there is a need to specify a rectangle on the canvas where annotation is allowed. Otherwise, the entire canvas will be made available for annotation. 
 Perhaps this can be used in conjunction with some form of a marquee tool. 
-<br>
+<br><br>
 
 `is_within_boundary(x, y)`
 <br>
 Checks if the input x and y coordinates are within the demarcated boundary. If no boundary was previously set, this method simply returns `True`.
+<br><br>
 
 The rest of the methods are simply helper methods.
