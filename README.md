@@ -139,7 +139,7 @@ Bound to the BackSpace key.
   * Undoing while all polygons are closed will undo an entire polygon.
   * Undoing while there is an unclosed polygon will undo a single line.
 
-The polygons and points are kept on separate "layers". In other words, points are "undone" independent of the polygons, and vice versa.<br>
+The polygons and points are kept on separate "layers". In other words, points are "undone" independent of the polygons, and vice versa.<br><br>
 
 `clear_all()`
 <br>
