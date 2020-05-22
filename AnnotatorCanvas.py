@@ -8,6 +8,7 @@ class AnnotatorCanvas(tk.Canvas):
     
     def __init__(self, master=None, **Options):
         super().__init__(master, **Options)
+        self.boundary = None
         self.saved_points = []
         self.points = []
         
@@ -41,6 +42,18 @@ class AnnotatorCanvas(tk.Canvas):
         self.unbind("<Double-Button-1>")
         self.master.unbind("<BackSpace>")
 
+    def set_boundary(self, x, y, width, height):
+        """ 
+        Only call this method if there is a need to specify a rectangle on the canvas where
+        annotation is allowed. Otherwise, the entire canvas will be open to annotation.
+        """
+        self.boundary = (x, y, x+width, y+height)
+
+    def is_within_boundary(self, x, y):
+        if not self.boundary: return True
+        x_left, y_left, x_right, y_right = self.boundary
+        return x >= x_left and y >= y_left and x <= x_right and y <= y_right
+
 
     ######################################
     ##   METHODS FOR POINT ANNOTATION   ##
@@ -56,6 +69,7 @@ class AnnotatorCanvas(tk.Canvas):
 
     def add_point(self, event):
         x, y = event.x, event.y
+        if not self.is_within_boundary(x, y): return
         self.points.append(self.create_oval(x, y, x + self.POINT_RAD, y + self.POINT_RAD, outline=self.LINE_COLOUR, width=self.LINE_WIDTH))
         self.saved_points.append((x, y))
 
@@ -79,6 +93,7 @@ class AnnotatorCanvas(tk.Canvas):
 
     def add_node(self, event):
         x, y = event.x, event.y
+        if not self.is_within_boundary(x, y): return
         if self.polygon_coords:
             last_x = self.polygon_coords[-1][0]; last_y = self.polygon_coords[-1][1]
             self._create_line(last_x, last_y, x, y)
